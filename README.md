@@ -76,6 +76,8 @@ Install via Library Manager di Arduino IDE.
 
 [![Watch on YouTube](https://youtube.com/shorts/qacj89Vcywc)
 
+[![Watch on YouTube](https://img.youtube.com/vi/qacj89Vcywc/0.jpg)](https://youtube.com/shorts/qacj89Vcywc)
+
 ---
 
 ## 📁 Struktur File
