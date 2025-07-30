@@ -1,139 +1,85 @@
-# SnakeGames-WemosOLED
-🐍 Snake Game di Wemos D1 Mini + OLED
-🎮 Deskripsi Proyek
-Proyek ini adalah implementasi game Snake klasik menggunakan board Wemos D1 Mini (ESP8266) dengan layar OLED 0.96" (SSD1306, I2C), dilengkapi 4 tombol arah dan buzzer aktif untuk efek suara.
+# 🐍 Snake Game on Wemos D1 Mini + OLED + Buzzer
 
-Game menampilkan:
+Mini proyek game **Snake klasik** berjalan di **Wemos D1 Mini (ESP8266)** dengan layar OLED 0.96" dan suara buzzer. Game ini dibuat menggunakan 4 tombol untuk kontrol arah dan menampilkan score + timer langsung di layar.
 
-Score & Timer
+![OLED Snake Screenshot](your_screenshot_here.png)
 
-Area bermain
+---
 
-Snake yang bertumbuh
+## 🎮 Fitur
 
-Makanan random
+- Tampilan OLED 128×64 dengan area game 120×40
+- Snake bertumbuh saat makan
+- Score dan timer real-time
+- Suara buzzer saat makan dan game over
+- Kontrol 4 tombol (UP, DOWN, LEFT, RIGHT)
 
-Buzzer saat makan dan game over
+---
 
-🛠️ Perangkat Keras
-Komponen	Jumlah	Catatan
-Wemos D1 Mini	1	ESP8266 board
-OLED 0.96" I2C	1	Alamat I2C: 0x3C
-Push Button	4	Untuk arah: atas, bawah, kiri, kanan
-Resistor 10K	4	Pull-down untuk tombol (opsional, gunakan INPUT_PULLUP)
-Buzzer Aktif	1	Untuk efek suara
-Breadboard + Kabel Jumper	1 set	Untuk perakitan
+## 🛠️ Hardware
 
-🧩 Wiring
-Fungsi	Pin ESP8266 (Wemos D1 Mini)
-OLED SDA	D2
-OLED SCL	D1
-UP	D5
-DOWN	D6
-LEFT	D7
-RIGHT	D3
-BUZZER	D4
+| Komponen       | Jumlah | Keterangan                    |
+|----------------|--------|-------------------------------|
+| Wemos D1 Mini  | 1      | Board ESP8266                 |
+| OLED 0.96"     | 1      | I2C, alamat default `0x3C`    |
+| Tombol tekan   | 4      | Untuk arah                    |
+| Buzzer aktif   | 1      | Output suara sederhana        |
+| Resistor 10K   | 4      | Pull-down jika diperlukan     |
+| Breadboard + Kabel jumper | 1 set | Untuk perakitan         |
 
-Tombol dihubungkan ke GND dan pin D5–D3 (gunakan INPUT_PULLUP).
+---
 
-📦 Library yang Digunakan
-Adafruit GFX
+## ⚡ Wiring
 
-Adafruit SSD1306
+| Fungsi    | Pin ESP8266 (Wemos D1 Mini) |
+|-----------|-----------------------------|
+| OLED SDA  | D2                          |
+| OLED SCL  | D1                          |
+| Tombol UP    | D5                      |
+| Tombol DOWN  | D6                      |
+| Tombol LEFT  | D7                      |
+| Tombol RIGHT | D3                      |
+| Buzzer       | D4                      |
 
-🧠 Struktur Game
-1. Variabel Utama
-snakeX[], snakeY[] — array posisi seluruh bagian ular
+---
 
-length — panjang ular
+## 📦 Library yang Digunakan
 
-dirX, dirY — arah gerak (incremental)
+- [Adafruit GFX](https://github.com/adafruit/Adafruit-GFX-Library)
+- [Adafruit SSD1306](https://github.com/adafruit/Adafruit_SSD1306)
 
-foodX, foodY — posisi makanan
+Install via Library Manager di Arduino IDE.
 
-score — skor saat ini
+---
 
-startTime — waktu mulai
+## 🧠 Cara Kerja Game
 
-2. setup()
-Inisialisasi OLED, tombol, buzzer
+- Snake bergerak dalam area 120×40 pixel
+- Makanan muncul secara acak di grid
+- Tombol arah mengubah arah gerak snake
+- Snake akan tumbuh dan score bertambah saat makan
+- Game over terjadi saat menabrak dinding atau diri sendiri
+- Buzzer berbunyi saat makan dan game over
 
-Set posisi awal ular
+---
 
-Spawn makanan pertama
+## ▶️ Cara Menjalankan
 
-3. loop()
-Baca input tombol dan arahkan ular
+1. Upload sketch ke Wemos D1 Mini
+2. Pasang OLED dan tombol sesuai wiring
+3. Jalankan board dan mainkan menggunakan tombol
+4. Jika snake menabrak dinding atau tubuh sendiri, game berakhir
 
-Gerakkan ular
+---
 
-Cek tabrakan dengan dinding dan diri sendiri
+## 📺 Video Demo
 
-Cek jika makan makanan
+[![Watch on YouTube](https://youtube.com/shorts/qacj89Vcywc)
 
-Gambar ulang layar (OLED)
+---
 
-Delay kecil (kecepatan)
-
-4. handleInput()
-Deteksi tombol ditekan dan ubah arah gerak
-
-5. spawnFood()
-Tempatkan makanan di posisi acak dalam grid
-
-6. drawScreen()
-Menampilkan:
-
-Skor dan waktu
-
-Area permainan
-
-Snake (dengan fillRect)
-
-Makanan
-
-7. beep()
-Fungsi untuk membunyikan buzzer aktif
-
-8. gameOver()
-Buzzer 3 kali
-
-Tampilkan “Game Over” dan berhenti program
-
-📺 Tampilan Layar (OLED)
-Baris atas: Score dan Time
-
-Kotak di bawah: Area bermain 120×40 px
-
-Snake: kotak 4×4 px
-
-Makanan: kotak 4×4 px
-
-🎵 Efek Suara (Buzzer)
-Saat makan makanan → beep(50)
-
-Saat game over → 3x beep(100)
-
-Buzzer aktif hanya perlu HIGH/LOW untuk menyala. Jika kamu menggunakan buzzer pasif, gunakan tone().
-
-🚫 Game Over
-Game berakhir jika:
-
-Ular menabrak dinding
-
-Ular menabrak tubuhnya sendiri
-
-Setelah game over, perangkat masuk ke loop tak terbatas (while(1);) untuk berhenti.
-
-📌 Perluasan (Opsional)
-Fitur lanjutan yang bisa ditambahkan:
-
-Simpan high score di EEPROM
-
-Level dengan kecepatan meningkat
-
-Obstacle (rintangan)
-
-Tampilan animasi game over
-
-Menu pemilihan game lain
+## 📁 Struktur File
+/snake-game-oled/
+├── snake_game.ino
+├── README.md
+└── screenshot.png (optional)
