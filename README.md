@@ -79,7 +79,7 @@ Install via Library Manager di Arduino IDE.
 ---
 
 ## 📁 Struktur File
-/snake-game-oled/
+/SnakeGames-WemosOLED/
 ├── snake_game.ino
 ├── README.md
 └── screenshot.png (optional)
