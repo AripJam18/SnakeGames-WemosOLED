@@ -2,7 +2,7 @@
 
 Mini proyek game **Snake klasik** berjalan di **Wemos D1 Mini (ESP8266)** dengan layar OLED 0.96" dan suara buzzer. Game ini dibuat menggunakan 4 tombol untuk kontrol arah dan menampilkan score + timer langsung di layar.
 
-![OLED Snake Screenshot](your_screenshot_here.png)
+![OLED Snake Screenshot](Snake Game.png)
 
 ---
 
